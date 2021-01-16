@@ -1,10 +1,13 @@
   
 import React from 'react';
+import VisNetwork from '../components/Graph';
 
 function Home() {
   return (
-    <div className='home'>
-      <h1>Home</h1>
+    <div id='mynetwork'>
+      <body>
+        <VisNetwork />
+      </body>
     </div>
   );
 }

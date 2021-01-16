@@ -18,7 +18,6 @@ function App() {
           <Route path='/classes' component={Classes} />
         </Switch>
       </Router>
-      <VisNetwork />
     </>
   );
 }
