@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Rooms from './pages/Rooms';
 import Classes from './pages/Classes';
+import VisNetwork from './components/Graph';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/classes' component={Classes} />
         </Switch>
       </Router>
+      <VisNetwork />
     </>
   );
 }
