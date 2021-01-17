@@ -2,6 +2,7 @@
 import React from 'react';
 import VisNetwork from '../components/Graph';
 import Popup from "../components/Popup";
+
 class Home extends React.Component{
     constructor(props) {
         super(props);
@@ -11,8 +12,12 @@ class Home extends React.Component{
         }
         this.onNodeClick = this.onNodeClick.bind(this);
     }
-    onNodeClick = (node) =>{
 
+    togglePopup() {
+      this.setState({show_pop : false});
+    }
+
+    onNodeClick = (node) =>{
         if(node.length >= 1) {
             console.log(node);
             this.setState({show_pop: true});
@@ -20,18 +25,24 @@ class Home extends React.Component{
         }
     }
 
-    render_pop = () =>{
+    render_pop = () => {
         if(this.state.show_pop){
-            return <Popup/>
+            return (
+              <Popup
+                text='Click "Close Button" to hide popup'
+                closePopup={this.togglePopup.bind(this)}
+              />
+            );
         }
     }
 
   render() {
       return (
           <div className='home'>
-              {this.render_pop()}
               <VisNetwork onNodeClick={this.onNodeClick}/>
+              {this.render_pop()}
           </div>
+          
       );
   }
 }

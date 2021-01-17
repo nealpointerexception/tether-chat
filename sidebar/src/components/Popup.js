@@ -7,6 +7,7 @@ class Popup extends React.Component {
       <div className='popup'>
         <div className='popup_inner'>
           <h1>{this.props.text}</h1>
+        <button onClick={this.props.closePopup}>Close</button>
         </div>
       </div>
     );

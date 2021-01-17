@@ -130,14 +130,13 @@ import Popup from './Popup.js';
   };
   
   export default class VisNetwork extends Component {
-  
     constructor(props) {
       super(props);
       this.network = {};
       this.appRef = createRef();
       this.onNc = this.props.onNodeClick
-
     }
+
     bigbrane = (properties) =>{
       const clickedNode = nodes.get(properties.nodes);
       this.onNc(clickedNode);
