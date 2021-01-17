@@ -1,0 +1,94 @@
+.todolist {
+	background-color: #03033d;
+	padding: 20px 20px 20px 20px;
+	width: 300px;
+	margin: 50px;
+	border-radius: 50px;
+	position: relative;
+	align-items: center;
+}
+
+.todolist h3 {
+	margin: 0;
+	padding-bottom: 20px;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Lato', sans-serif;
+	color: #ffffff;
+	align-items: center;
+}
+
+.todolist .info {
+	position: absolute;
+	margin-top: 20px;
+	left: 0;
+	right: 0;
+	color: #ffffff;
+	text-align: center;
+}
+
+.form-control {
+	border-radius: 0;
+}
+
+li.ui-state-default {
+	background: #006bb3;
+	border-radius: 5px;
+	color: #ffffff;
+	align-items: center;
+}
+
+li.ui-state-default:last-child {
+	border-bottom: none;
+	color: #ffffff;
+	left: 10;
+	align-items: center;
+}
+
+li.completed label {
+	text-decoration: line-through;
+	color: #ffffff;
+}
+
+footer {
+	margin: 0 20px -10px -20px;
+	padding: 12px 20px;
+	position: relative;
+	color: #ffffff;
+}
+
+.filters {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.filters li {
+	display: inline-block;
+}
+
+.filters li a {
+	color: inherit;
+	margin: 3px;
+	padding: 4px 8px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+.filters li a.selected,
+.filters li a:hover {
+	border-color: #006bb3;
+}
+
+.filters li a.selected {
+	border-color: #006bb3;
+	color: #ffffff;
+}
+
+footer .buttons {
+	border-right: 1px solid #ffffff;
+	margin-right: 15px;
+	padding-right: 10px;
+	height: 20px;
+}
