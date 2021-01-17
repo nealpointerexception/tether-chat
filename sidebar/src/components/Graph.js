@@ -98,7 +98,7 @@ import React, { Component, createRef } from "react";
 import Popup from './Popup.js';
 
   const nodes = new DataSet([
-    { id: 1, shape: "circularImage", image: "./logo192.png", label: 'Node 1' },
+    { id: "test", shape: "circularImage", image: "./logo192.png", label: 'Node 1' },
     { id: 2, shape: "circularImage", image: "./logo192.png", label: 'Node 2' },
     { id: 3, shape: "circularImage", image: "./logo192.png", label: 'Node 3' },
     { id: 4, shape: "circularImage", image: "./logo192.png", label: 'Node 4' },
@@ -131,20 +131,21 @@ import Popup from './Popup.js';
   
   export default class VisNetwork extends Component {
   
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.network = {};
       this.appRef = createRef();
+      this.onNc = this.props.onNodeClick
+
+    }
+    bigbrane = (properties) =>{
+      const clickedNode = nodes.get(properties.nodes);
+      this.onNc(clickedNode);
     }
   
     componentDidMount() {
       this.network = new Network(this.appRef.current, data, options);
-      this.network.on('click', function(properties) {
-        // var ids = properties.nodes;
-        // var clickedNodes = nodes.get(ids);
-        // console.log('clicked nodes:', clickedNodes);
-
-      });
+      this.network.on('click', this.bigbrane)
     }
   
     render() {
