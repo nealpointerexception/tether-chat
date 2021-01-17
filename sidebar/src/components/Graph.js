@@ -1,14 +1,101 @@
-import React, { useEffect, useRef } from 'react';
-import { DataSet, Network} from 'vis-network/standalone/esm/vis-network';
+// import { Graph } from "react-d3-graph";
 
-const VisNetwork = () => {
-  // A reference to the div rendered by this component
-  const domNode = useRef(null);
+// // graph payload (with minimalist structure)
 
-  // A reference to the vis network instance
-  const network = useRef(null);
+// const VisNetwork = () => {
+//   const data = {
+//     nodes: [{ id: "Harry" }, { id: "Sally" }, { id: "Alice" }],
+//     links: [
+//       { source: "Harry", target: "Sally" },
+//       { source: "Harry", target: "Alice" },
+//     ],
+//   };
 
-  // An array of nodes
+//   // the graph configuration, just override the ones you need
+//   const myConfig = {
+//     nodeHighlightBehavior: true,
+//     node: {
+//       color: "lightgreen",
+//       size: 120,
+//       highlightStrokeColor: "blue",
+//     },
+//     link: {
+//       highlightColor: "lightblue",
+//     },
+//   };
+
+//   const onClickNode = function(nodeId) {
+//     window.alert(`Clicked node ${nodeId}`);
+//   };
+  
+//   return(
+//     <Graph
+//       id="graph-id"
+//       data={data}
+//       config={myConfig}
+//       onClickNode={onClickNode}
+//     />
+//   );
+// }
+
+// export default VisNetwork
+
+// import React, { useEffect, useRef } from 'react';
+// import { DataSet, Network} from 'vis-network/standalone/esm/vis-network';
+
+// const VisNetwork = () => {
+//   // A reference to the div rendered by this component
+//   const domNode = useRef(null);
+
+//   // An array of nodes
+//   const nodes = new DataSet([
+//     { id: 1, shape: "circularImage", image: "./logo192.png", label: 'Node 1' },
+//     { id: 2, shape: "circularImage", image: "./logo192.png", label: 'Node 2' },
+//     { id: 3, shape: "circularImage", image: "./logo192.png", label: 'Node 3' },
+//     { id: 4, shape: "circularImage", image: "./logo192.png", label: 'Node 4' },
+//     { id: 5, shape: "circularImage", image: "./logo192.png", label: 'Node 5' }
+//   ]);
+
+//   // An array of edges
+//   const edges = new DataSet([
+//     { from: 1, to: 3 },
+//     { from: 1, to: 2 },
+//     { from: 2, to: 4 },
+//     { from: 2, to: 5 }
+//   ]);
+
+//   const data = {
+//     nodes,
+//     edges
+//   };
+
+//   const options = {
+//     nodes: {
+//       size: 30,
+//       color: {
+//         border: "#222222",
+//         background: "#666666",
+//       },
+//       font: { color: "#eeeeee" },
+//     }
+//   };
+
+//   var network = new Network(domNode.current, data, options)
+//   network.on( 'click', function(properties) {
+//     var ids = properties.nodes;
+//     var clickedNodes = nodes.get(ids);
+//     console.log('clicked nodes:', clickedNodes);
+//   });
+//   return (
+//     <div ref = { domNode } className='home'/>
+//   );
+// };
+
+// export default VisNetwork;
+
+import { DataSet, Network } from 'vis-network/standalone/esm/vis-network';
+import React, { Component, createRef } from "react";
+
   const nodes = new DataSet([
     { id: 1, shape: "circularImage", image: "./logo192.png", label: 'Node 1' },
     { id: 2, shape: "circularImage", image: "./logo192.png", label: 'Node 2' },
@@ -16,25 +103,21 @@ const VisNetwork = () => {
     { id: 4, shape: "circularImage", image: "./logo192.png", label: 'Node 4' },
     { id: 5, shape: "circularImage", image: "./logo192.png", label: 'Node 5' }
   ]);
-
-  // An array of edges
+  
+  // create an array with edges
   const edges = new DataSet([
     { from: 1, to: 3 },
     { from: 1, to: 2 },
     { from: 2, to: 4 },
     { from: 2, to: 5 }
   ]);
-
+  
   const data = {
-    nodes,
-    edges
+    nodes: nodes,
+    edges: edges
   };
-
   const options = {
-    autoResize: true,
-    height: '100%',
-    width: '100%',
-    nodes: {
+      nodes: {
       size: 30,
       color: {
         border: "#222222",
@@ -43,17 +126,29 @@ const VisNetwork = () => {
       font: { color: "#eeeeee" },
     }
   };
-
-  useEffect(
-    () => {
-      network.current = new Network(domNode.current, data, options);
-    },
-    [domNode, network, data, options]
-  );
-
-  return (
-    <div ref = { domNode } id='mynetwork'/>
-  );
-};
-
-export default VisNetwork;
+  
+  // initialize your network!
+  
+  export default class VisNetwork extends Component {
+  
+    constructor() {
+      super();
+      this.network = {};
+      this.appRef = createRef();
+    }
+  
+    componentDidMount() {
+      this.network = new Network(this.appRef.current, data, options);
+      this.network.on( 'click', function(properties) {
+        var ids = properties.nodes;
+        var clickedNodes = nodes.get(ids);
+        console.log('clicked nodes:', clickedNodes);
+    });
+    }
+  
+    render() {
+      return (
+        <div ref={this.appRef} />
+      );
+    }
+  }

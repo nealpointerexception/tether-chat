@@ -7,14 +7,12 @@
 	font-family: 'Lato', sans-serif;
 }
 
-#mynetwork {
-	display: flex;
-	height: 90vh;
-	align-items: center;
-	justify-content: center;
+.home{
+	float:right;
+	background-color:green;
+	width: 80%;
+	height: 90vh
 }
-
-.home,
 .classes,
 .rooms {
 	display: flex;
