@@ -95,6 +95,7 @@
 
 import { DataSet, Network } from 'vis-network/standalone/esm/vis-network';
 import React, { Component, createRef } from "react";
+import Popup from './Popup.js';
 
   const nodes = new DataSet([
     { id: 1, shape: "circularImage", image: "./logo192.png", label: 'Node 1' },
@@ -116,6 +117,7 @@ import React, { Component, createRef } from "react";
     nodes: nodes,
     edges: edges
   };
+
   const options = {
       nodes: {
       size: 30,
@@ -127,8 +129,6 @@ import React, { Component, createRef } from "react";
     }
   };
   
-  // initialize your network!
-  
   export default class VisNetwork extends Component {
   
     constructor() {
@@ -139,16 +139,17 @@ import React, { Component, createRef } from "react";
   
     componentDidMount() {
       this.network = new Network(this.appRef.current, data, options);
-      this.network.on( 'click', function(properties) {
-        var ids = properties.nodes;
-        var clickedNodes = nodes.get(ids);
-        console.log('clicked nodes:', clickedNodes);
-    });
+      this.network.on('click', function(properties) {
+        // var ids = properties.nodes;
+        // var clickedNodes = nodes.get(ids);
+        // console.log('clicked nodes:', clickedNodes);
+
+      });
     }
   
     render() {
       return (
-        <div ref={this.appRef} />
+        <div ref={this.appRef} className='network'/>
       );
     }
   }

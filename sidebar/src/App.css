@@ -7,11 +7,17 @@
 	font-family: 'Lato', sans-serif;
 }
 
+.network{
+	float:right;
+	width: 100%;
+	height: 92vh
+}
+
 .home{
 	float:right;
-	background-color:green;
 	width: 80%;
-	height: 90vh
+	height: 92vh;
+	background-color: green;
 }
 .classes,
 .rooms {
