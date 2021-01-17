@@ -6,6 +6,6 @@ function Rooms() {
       <h1>Rooms</h1>
     </div>
   );
-}
+};
 
 export default Rooms;

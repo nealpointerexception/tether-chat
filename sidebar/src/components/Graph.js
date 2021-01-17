@@ -119,6 +119,7 @@ import Popup from './Popup.js';
   };
 
   const options = {
+    onClick: true,
       nodes: {
       size: 30,
       color: {
